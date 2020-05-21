@@ -1,0 +1,40 @@
+<div class="d-flex">
+  <h1>All Bookmarks</h1>
+</div>
+<mat-form-field>
+  <mat-label>Groups</mat-label>
+  <mat-select value="">
+    <mat-option value="">All</mat-option>
+    <mat-option *ngFor="let option of getBookmarksGroups()" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef><strong>Name</strong></mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef><strong>Url</strong></mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.url }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="group">
+    <mat-header-cell *matHeaderCellDef><strong>Group</strong></mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.group }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef><strong>Actions</strong></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <fa-icon [icon]="faTrash" (click)="deleteBookmark(row.id)"></fa-icon>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator
+  [hidden]="!bookmarks?.length"
+  [length]="bookmarks?.length"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 20, 50, 100]"
+  showFirstLastButtons></mat-paginator>

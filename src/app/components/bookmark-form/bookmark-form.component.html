@@ -1,0 +1,38 @@
+<div class="d-flex flex-column flex-grow-1">
+  <div class="d-flex flex-grow-1">
+    <h1> Add new Bookmark</h1>
+  </div>
+  <form [formGroup]="bookmarkForm" (ngSubmit)="submit($event)" class="d-flex flex-row flex-grow-1">
+    <mat-form-field class="mr-2">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        placeholder="Insert bookmark name">
+      <mat-error *ngIf="bookmarkForm.controls.name.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="mr-2">
+      <mat-label>Url</mat-label>
+      <input
+        matInput
+        formControlName="url"
+        placeholder="Insert bookmark url">
+      <mat-error *ngIf="bookmarkForm.controls.url.hasError('required')">
+        Url is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="mr-2">
+      <mat-label>Group</mat-label>
+      <input
+        matInput
+        formControlName="group"
+        placeholder="Insert bookmark group">
+      <mat-error *ngIf="bookmarkForm.controls.group.hasError('required')">
+        Group is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary">New</button>
+  </form>
+</div>
