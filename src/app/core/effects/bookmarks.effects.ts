@@ -1,0 +1,29 @@
+import { Injectable } from "@angular/core";
+import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
+import { bookmarkActions } from "../actions/bookmark.action";
+import { switchMap } from "rxjs/operators";
+import { BookmarkService } from "../services/bookmark.service";
+import { Bookmark } from "../models";
+
+@Injectable()
+export class BookmarksEffects {
+
+  @Effect()
+  addBookmark = createEffect( () =>
+    this.actions$.pipe(
+      ofType(bookmarkActions.getInitialBookmarks),
+      switchMap( () =>
+        this.bookmarkService.getBookmarks().toPromise()
+        .then( (bookmarks: Bookmark[]) => {
+          return bookmarkActions.getInitialBookmarksSuccess( { bookmarks } );
+        })
+        .catch( error => bookmarkActions.getInitialBookmarksError( { error }))
+      )
+    )
+  );
+
+  constructor (
+    private actions$: Actions,
+    private bookmarkService: BookmarkService) {}
+
+}

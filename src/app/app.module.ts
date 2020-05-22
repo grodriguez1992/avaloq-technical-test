@@ -20,6 +20,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { ShowOnDirtyErrorStateMatcher } from "@angular/material/core";
 import { StateMatcherError } from "./core/errors/stateMatcher.error";
+import { EffectsModule } from "@ngrx/effects";
+import { BookmarksEffects } from "./core/effects/bookmarks.effects";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { StateMatcherError } from "./core/errors/stateMatcher.error";
     AppRoutingModule,
     StoreModule.forRoot( AllReducers ),
     StoreDevtoolsModule.instrument( { maxAge: 25, logOnly: !environment.production } ),
+    EffectsModule.forRoot([BookmarksEffects]),
+    HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
     BrowserAnimationsModule,

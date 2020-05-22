@@ -32,13 +32,11 @@ export class BookmarkTableComponent implements OnInit {
   faTrash = faTrash;
 
   constructor(private store: Store<BookmarkState>) {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.filterPredicate = ((data, filter) => data.group === filter );
-
     this.store.pipe( select(selectAllBookmarks) ).subscribe( (bookmarks: Bookmark[]) => {
       this.bookmarks = bookmarks;
       this.dataSource.data = this.bookmarks;
-      this.dataSource.paginator = this.paginator;
+      setTimeout(() => this.dataSource.paginator = this.paginator);
     });
   }
 
@@ -55,6 +53,7 @@ export class BookmarkTableComponent implements OnInit {
 
   deleteBookmark(id: number) {
     this.store.dispatch(bookmarkActions.removeBookmark({id}));
+    this.dataSource.filter = this.selector.value;
   }
 
 }

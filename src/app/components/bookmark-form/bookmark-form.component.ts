@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } f
 import { Store } from "@ngrx/store";
 import { Bookmark, BookmarkState } from "../../core/models";
 import { bookmarkActions } from "../../core/actions/bookmark.action";
-import { StateMatcherError } from "../../core/errors/stateMatcher.error";
 
 @Component({
   selector: 'app-bookmark-form',
@@ -11,8 +10,6 @@ import { StateMatcherError } from "../../core/errors/stateMatcher.error";
   styleUrls: ['./bookmark-form.component.scss']
 })
 export class BookmarkFormComponent implements OnInit {
-
-  @ViewChild(FormGroupDirective) formElement: FormGroupDirective;
 
   public bookmarkForm: FormGroup;
 
@@ -29,14 +26,14 @@ export class BookmarkFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    }
+  }
 
   submit(event) {
     event.preventDefault();
     if (this.bookmarkForm.valid) {
       const bookmark: Bookmark = new Bookmark({...this.bookmarkForm.getRawValue()});
       this.store.dispatch( bookmarkActions.addBookmark({bookmark}));
-      this.formElement.resetForm();
+      this.bookmarkForm.reset();
     }
   }
 

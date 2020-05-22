@@ -4,6 +4,7 @@ import { select, Store } from "@ngrx/store";
 import { MatTableDataSource } from "@angular/material/table";
 import { selectAllBookmarks } from "./core/selectors/bookmark.selector";
 import { MatPaginator } from "@angular/material/paginator";
+import { bookmarkActions } from "./core/actions/bookmark.action";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,10 @@ import { MatPaginator } from "@angular/material/paginator";
 })
 export class AppComponent implements OnInit{
 
-  title = 'avaloq';
+  constructor (private store: Store<BookmarkState>) {}
 
-  constructor () {}
-
-  ngOnInit (): void {}
+  ngOnInit (): void {
+    this.store.dispatch(bookmarkActions.getInitialBookmarks());
+  }
 
 }
