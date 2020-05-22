@@ -11,15 +11,19 @@ import { bookmarkActions } from "../../core/actions/bookmark.action";
 })
 export class BookmarkFormComponent implements OnInit {
 
+  @ViewChild(FormGroupDirective, {static: true}) form: FormGroupDirective;
+
   public bookmarkForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private store: Store<BookmarkState>
   ) {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
     this.bookmarkForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
-      url: new FormControl('', [Validators.required]),
+      url: new FormControl('', [Validators.required, Validators.pattern(reg)]),
       group: new FormControl('', [Validators.required]),
     });
   }
@@ -29,12 +33,12 @@ export class BookmarkFormComponent implements OnInit {
   }
 
   submit(event) {
-    event.preventDefault();
     if (this.bookmarkForm.valid) {
       const bookmark: Bookmark = new Bookmark({...this.bookmarkForm.getRawValue()});
       this.store.dispatch( bookmarkActions.addBookmark({bookmark}));
-      this.bookmarkForm.reset();
+      this.form.resetForm();
     }
+    event.preventDefault();
   }
 
 
