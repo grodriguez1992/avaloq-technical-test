@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  Validators
+} from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { Bookmark, BookmarkState } from "../../core/models";
 import { bookmarkActions } from "../../core/actions/bookmark.action";
@@ -32,13 +38,12 @@ export class BookmarkFormComponent implements OnInit {
 
   }
 
-  submit(event) {
+  submit() {
     if (this.bookmarkForm.valid) {
       const bookmark: Bookmark = new Bookmark({...this.bookmarkForm.getRawValue()});
       this.store.dispatch( bookmarkActions.addBookmark({bookmark}));
       this.form.resetForm();
     }
-    event.preventDefault();
   }
 
 

@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Bookmark, BookmarkState } from "./core/models";
-import { select, Store } from "@ngrx/store";
-import { MatTableDataSource } from "@angular/material/table";
-import { selectAllBookmarks } from "./core/selectors/bookmark.selector";
-import { MatPaginator } from "@angular/material/paginator";
+import { BookmarkState } from "./core/models";
+import { Store } from "@ngrx/store";
 import { bookmarkActions } from "./core/actions/bookmark.action";
 
 @Component({

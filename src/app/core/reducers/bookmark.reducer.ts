@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkState } from "../models/bookmark";
+import { BookmarkState } from "../models/bookmark";
 import { Action, createReducer, on } from "@ngrx/store";
 import { bookmarkActions } from "../actions/bookmark.action";
 

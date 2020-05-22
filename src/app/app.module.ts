@@ -23,6 +23,11 @@ import { StateMatcherError } from "./core/errors/stateMatcher.error";
 import { EffectsModule } from "@ngrx/effects";
 import { BookmarksEffects } from "./core/effects/bookmarks.effects";
 import { HttpClientModule } from "@angular/common/http";
+import {
+  MatSnackBar,
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -45,9 +50,14 @@ import { HttpClientModule } from "@angular/common/http";
     MatSelectModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
-  providers: [{provide: StateMatcherError, useClass: ShowOnDirtyErrorStateMatcher}],
+  providers: [
+    {provide: StateMatcherError, useClass: ShowOnDirtyErrorStateMatcher},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    MatSnackBar
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

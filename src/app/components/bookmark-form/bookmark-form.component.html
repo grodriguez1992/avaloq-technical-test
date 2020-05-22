@@ -2,7 +2,7 @@
   <div class="d-flex flex-grow-1">
     <h1> Add new Bookmark</h1>
   </div>
-  <form [formGroup]="bookmarkForm" #ngForm (ngSubmit)="submit($event)" class="d-flex flex-row flex-grow-1">
+  <form [formGroup]="bookmarkForm" (ngSubmit)="submit()" class="d-flex flex-row flex-grow-1">
     <mat-form-field class="mr-2">
       <mat-label>Name</mat-label>
       <input
