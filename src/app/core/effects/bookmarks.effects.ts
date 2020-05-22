@@ -14,13 +14,12 @@ export class BookmarksEffects {
       ofType(bookmarkActions.getInitialBookmarks),
       switchMap( () =>
         this.bookmarkService.getBookmarks().toPromise()
-        .then( (bookmarks: Bookmark[]) => {
-          return bookmarkActions.getInitialBookmarksSuccess( { bookmarks } );
-        })
+        .then( (bookmarks: Bookmark[]) =>
+          bookmarkActions.getInitialBookmarksSuccess( { bookmarks } ))
         .catch( error => bookmarkActions.getInitialBookmarksError( { error }))
       )
     )
-  );
+  , { dispatch: false });
 
   constructor (
     private actions$: Actions,
