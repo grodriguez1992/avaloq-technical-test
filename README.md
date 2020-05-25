@@ -39,6 +39,7 @@ On the reducer it includes all the shares except getInitialBookmarks
 
 ![Screenshot1](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen1.PNG)
 ![Screenshot2](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen2.PNG)
+![Screenshot3](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen3.PNG)
 
 ## Development server
 
