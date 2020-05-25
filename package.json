@@ -63,6 +63,14 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.4.0"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix", "git add"
+    ],
+    "src/**/*.scss": [
+      "stylelint --syntax scss --fix", "git add"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && pretty-quick --staged"
