@@ -11,5 +11,6 @@ export class Bookmark {
 }
 
 export class BookmarkState {
-  bookmarks: Bookmark[]
+  bookmarks: Bookmark[] = [];
+  loaded: boolean = false;
 }

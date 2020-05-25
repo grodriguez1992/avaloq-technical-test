@@ -13,13 +13,11 @@ export class BookmarksEffects {
   addBookmark = createEffect( () =>
     this.actions$.pipe(
       ofType(bookmarkActions.getInitialBookmarks),
-      tap( () => this.snackbarService.open('Loading online bookmarks')),
       switchMap( () =>
         this.bookmarkService.getBookmarks().toPromise()
         .then( (bookmarks: Bookmark[]) =>
         {
-          this.snackbarService.open('Loaded online bookmarks');
-          return bookmarkActions.getInitialBookmarksSuccess( { bookmarks } );
+          return bookmarkActions.getInitialBookmarksSuccess( { bookmarks, loaded: true } );
         })
         .catch( error => bookmarkActions.getInitialBookmarksError( { error }))
       ),
@@ -28,7 +26,6 @@ export class BookmarksEffects {
 
   constructor (
     private actions$: Actions,
-    private bookmarkService: BookmarkService,
-    private snackbarService :SnackbarService) {}
+    private bookmarkService: BookmarkService) {}
 
 }

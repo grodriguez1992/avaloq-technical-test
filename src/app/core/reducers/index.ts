@@ -5,4 +5,3 @@ export * from "./bookmark.reducer";
 export const  AllReducers = {
   bookmarkState: BookmarkReducer
 }
-

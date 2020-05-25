@@ -9,6 +9,7 @@ import {
 import { Store } from "@ngrx/store";
 import { Bookmark, BookmarkState } from "../../core/models";
 import { bookmarkActions } from "../../core/actions/bookmark.action";
+import { SnackbarService } from "../../core/services/snackbar.service";
 
 @Component({
   selector: 'app-bookmark-form',
@@ -23,7 +24,8 @@ export class BookmarkFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<BookmarkState>
+    private store: Store<BookmarkState>,
+    private snackbarService: SnackbarService
   ) {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
@@ -40,6 +42,7 @@ export class BookmarkFormComponent implements OnInit {
 
   submit() {
     if (this.bookmarkForm.valid) {
+      this.snackbarService.open('Added new bookmark');
       const bookmark: Bookmark = new Bookmark({...this.bookmarkForm.getRawValue()});
       this.store.dispatch( bookmarkActions.addBookmark({bookmark}));
       this.form.resetForm();

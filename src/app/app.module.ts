@@ -28,6 +28,7 @@ import {
   MatSnackBarModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS
 } from "@angular/material/snack-bar";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import {
     AppRoutingModule,
     StoreModule.forRoot( AllReducers ),
     StoreDevtoolsModule.instrument( { maxAge: 25, logOnly: !environment.production } ),
-    EffectsModule.forRoot([BookmarksEffects]),
+    EffectsModule.forRoot( [ BookmarksEffects ] ),
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
@@ -51,7 +52,8 @@ import {
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule
   ],
   providers: [
     {provide: StateMatcherError, useClass: ShowOnDirtyErrorStateMatcher},

@@ -4,18 +4,18 @@ import { bookmarkActions } from "../actions/bookmark.action";
 
 
 
-const bookmarkInitialState: BookmarkState = { bookmarks: [] };
+const bookmarkInitialState: BookmarkState = { bookmarks: [], loaded: false };
 
 const bookmarkReducer = createReducer( bookmarkInitialState,
   on( bookmarkActions.addBookmark, (state, { bookmark }) =>
-    ({ bookmarks: [...state.bookmarks,bookmark] })),
+    ({ ...state, bookmarks: [...state.bookmarks,bookmark] })),
   on ( bookmarkActions.removeBookmark, (state, { id }) =>
-    ({ bookmarks: state.bookmarks.filter( bm => bm.id !== id ) })),
-  on( bookmarkActions.getInitialBookmarksSuccess, ( state, { bookmarks } ) =>
-    ({ bookmarks: [...state.bookmarks, ...bookmarks] })),
+    ({ ...state, bookmarks: state.bookmarks.filter( bm => bm.id !== id ) })),
+  on( bookmarkActions.getInitialBookmarksSuccess, ( state, { bookmarks, loaded } ) =>
+    ({ bookmarks: [...state.bookmarks, ...bookmarks], loaded })),
   on( bookmarkActions.getInitialBookmarksError, (state, { error}) => {
     console.error(error);
-    return new BookmarkState();
+    return { bookmarks: [], loaded: true };
   })
 );
 
