@@ -1,7 +1,7 @@
-import { BookmarkReducer } from "./bookmark.reducer";
+import { BookmarkReducer } from './bookmark.reducer'
 
-export * from "./bookmark.reducer";
+export * from './bookmark.reducer'
 
-export const  AllReducers = {
-  bookmarkState: BookmarkReducer
+export const AllReducers = {
+  bookmarkState: BookmarkReducer,
 }

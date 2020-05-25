@@ -1,7 +1,6 @@
 import { BookmarkState } from '../models'
 import { Action, createReducer, on } from '@ngrx/store'
 import { bookmarkActions } from '../actions/bookmark.action'
-import { ActionReducer } from '@ngrx/store/src/models'
 
 const bookmarkInitialState: BookmarkState = { bookmarks: [], loaded: false }
 
@@ -28,6 +27,9 @@ const bookmarkReducer = createReducer(
   })
 )
 
-export function BookmarkReducer(state: BookmarkState, action: Action) {
+export function BookmarkReducer(
+  state: BookmarkState,
+  action: Action
+): BookmarkState {
   return bookmarkReducer(state, action)
 }

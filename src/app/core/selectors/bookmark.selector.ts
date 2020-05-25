@@ -1,7 +1,9 @@
-import { BookmarkState } from '../models'
+import { AllStates, BookmarkState } from '../models'
 import { createSelector } from '@ngrx/store'
 
-export const selectBookmark = (state: { bookmarkState }) => state.bookmarkState
+// eslint-disable-next-line
+export const selectBookmark = (state: any = {} as AllStates): BookmarkState =>
+  state.bookmarkState
 
 export const selectAllBookmarks = createSelector(
   selectBookmark,
