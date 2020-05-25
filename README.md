@@ -28,7 +28,7 @@ Exist only one effect in bookmark effects class and is called when it captured g
 #### Selectors & Reducer 
 
 There are three selectors, the first is the general selector and select bookmarkState and the other two return select state properties.
-On the reducer it includes all the shares except getInitialBookmarks
+In the reducer it includes all actions except getInitialBookmarks
 
 ### Services 
 
@@ -39,6 +39,7 @@ On the reducer it includes all the shares except getInitialBookmarks
 
 ![Screenshot1](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen1.PNG)
 ![Screenshot2](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen2.PNG)
+![Screenshot3](https://github.com/grodriguez1992/avaloq-technical-test/blob/master/src/assets/images/sceen3.PNG)
 
 ## Development server
 
